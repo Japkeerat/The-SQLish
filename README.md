@@ -1,2 +1,9 @@
 # The-Wierdest-Database-App
-Natural Language Interface for Database Processing
+
+Dependencies:
+<ul>
+  <li>JDK 10 (Won't run on any previous versions)</li>
+  <li> SQLite (jar file uploaded here)</li>
+</ul>
+
+nlidb.java contains the main class. Major chunk of work is done by Window.java.
