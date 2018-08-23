@@ -34,3 +34,9 @@
     -fx-font-family: Georgia;
     -fx-fill: grey;
 }
+
+#ErrorTitle {
+    -fx-font-family: Georgia;
+    -fx-font-size: 20px;
+    -fx-fill: #9090ff;
+}

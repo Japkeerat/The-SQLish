@@ -21,11 +21,12 @@ import javafx.stage.Stage;
  * TODO: Program buttons 'correct' and 'incorrect'.
  * TODO: Connect to Database.
  * */
-public class Window {
+class Window {
 
     private String command;
+    private String sequel;
 
-    public void createMainFrame(Stage primaryStage) {
+    void createMainFrame(Stage primaryStage) {
         primaryStage.setTitle("NL Interface for DBMS");
         primaryStage.setResizable(true);
         primaryStage.setFullScreen(false);
@@ -83,16 +84,27 @@ public class Window {
         enterButton.setOnAction(event -> {
             command = field.getText();
             SQLVersion sql = new SQLVersion();
-            String sequel = sql.convertToSQL(command);
+            sequel = sql.convertToSQL(command);
             label1.setVisible(true);
             sqlVersion.setText(sequel);
             label2.setVisible(true);
-            dbOutput.setText("This is temporary output");
+            Executing execute = new Executing();
+            dbOutput.setText(execute.executeCommand(command));
             label3.setVisible(true);
             correctionBox.setVisible(true);
         });
 
         clearButton.setOnAction(event -> field.clear());
+
+        CorrectionFactor factor = new CorrectionFactor();
+
+        correctButton.setOnAction(event -> {
+            factor.isCorrect(command, sequel);
+        });
+
+        incorrectButton.setOnAction(event -> {
+            factor.isIncorrect(command);
+        });
 
         Scene scene = new Scene(new VBox(), 1000, 700);
         scene.getStylesheets().add(Window.class.getResource("Styling.css").toExternalForm());

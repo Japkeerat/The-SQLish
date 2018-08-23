@@ -1,6 +1,8 @@
-public class SQLVersion {
 
-    public String convertToSQL(String command) {
+
+class SQLVersion {
+
+    String convertToSQL(String command) {
         String sql="This is temporary";
         return sql;
     }

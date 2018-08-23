@@ -13,9 +13,13 @@ import javafx.stage.Stage;
  * namely, the toolbar and scene.
  * Every scene page just needs to call the method toolbar for a toolbar to be displayed on the top.
  * */
-public class StaticSection {
+class StaticSection {
 
-    public MenuBar toolbar(Stage primaryStage) {
+    /**
+     * @param primaryStage Stage to go to when a button on MenuBar is pressed.
+     * @return MenuBar the bar which is then added to the scene on the stage.
+     * */
+    MenuBar toolbar(Stage primaryStage) {
         MenuBar bar = new MenuBar();
 
         Menu file = new Menu("File");
@@ -56,7 +60,7 @@ public class StaticSection {
         return bar;
     }
 
-    public GridPane pane() {
+    GridPane pane() {
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(150);
