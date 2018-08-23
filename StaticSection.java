@@ -6,6 +6,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * @author Japkeerat Singh
+ *
+ * StaticSection makes those parts of GUI which remain constant over all pages of the application
+ * namely, the toolbar and scene.
+ * Every scene page just needs to call the method toolbar for a toolbar to be displayed on the top.
+ * */
 public class StaticSection {
 
     public MenuBar toolbar(Stage primaryStage) {

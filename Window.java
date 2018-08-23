@@ -13,9 +13,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
+ * @author Japkeerat Singh
+ *
  * This class creates the interface where user inputs data and it is changed to its SQL
  * version and an ouput is shown.
- * In brief, this class is responsible for all of the main task of the application.
+ * In brief, this class is responsible for all of the GUI of the application.
  * TODO: Program buttons 'correct' and 'incorrect'.
  * TODO: Connect to Database.
  * */
@@ -36,6 +38,7 @@ public class Window {
         grid.add(title,0,0,2,1);
 
         Label fieldLabel = new Label("Enter command");
+        fieldLabel.setId("Label");
         grid.add(fieldLabel,0,1);
 
         TextArea field = textField();
@@ -50,6 +53,7 @@ public class Window {
 
         Label label1 = new Label("SQL of above command");
         label1.setVisible(false);
+        label1.setId("Label");
         grid.add(label1,0,3);
 
         Label sqlVersion = new Label();
@@ -57,6 +61,7 @@ public class Window {
 
         Label label2 = new Label("Output");
         label2.setVisible(false);
+        label2.setId("Label");
         grid.add(label2,0,4);
 
         Label dbOutput = new Label();
@@ -64,6 +69,7 @@ public class Window {
 
         Label label3 = new Label("Is the outut correct?");
         label3.setVisible(false);
+        label3.setId("Label");
         grid.add(label3,0,5);
 
         Button correctButton = new Button("Correct");
@@ -115,7 +121,7 @@ public class Window {
     /*Because there can be variable number of buttons in a HBox*/
     private HBox buttonBox(Button... button) {
         HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setAlignment(Pos.BOTTOM_LEFT);
         buttonBox.getChildren().addAll(button);
         return buttonBox;
     }
