@@ -1,9 +1,14 @@
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 class Usage {
 
@@ -20,10 +25,32 @@ class Usage {
         title.setId("Title");
         grid.add(title,0,0,2,1);
 
+        TextArea area = new TextArea();
+        area.setEditable(false);
+        area = settingUsageText(area);
+        grid.add(area,0,1,2,13);
+
         Scene scene = new Scene(new VBox(), 1000, 700);
         scene.getStylesheets().add(Window.class.getResource("Styling.css").toExternalForm());
         ((VBox) scene.getRoot()).getChildren().addAll(menuBar, grid);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private TextArea settingUsageText(TextArea area) {
+        File file = new File("Usage.txt");
+        area.setWrapText(true);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String s;
+            while((s=br.readLine())!=null) {
+                area.appendText(s);
+                area.appendText("\n");
+            }
+        }
+        catch(Exception ex) {
+            System.out.println("Exception");
+        }
+        return area;
     }
 }

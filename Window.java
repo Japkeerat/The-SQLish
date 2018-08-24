@@ -18,7 +18,6 @@ import javafx.stage.Stage;
  * This class creates the interface where user inputs data and it is changed to its SQL
  * version and an ouput is shown.
  * In brief, this class is responsible for all of the GUI of the application.
- * TODO: Program buttons 'correct' and 'incorrect'.
  * TODO: Connect to Database.
  * */
 class Window {
