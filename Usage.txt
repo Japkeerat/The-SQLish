@@ -1,0 +1,5 @@
+To use this application, enter the work you want to get from the database in the enter command tab and press enter. It would display the subsequent SQL command and the output. Press clear to clear the textbox.
+
+***
+So as to keep on improving the application, we keep on asking whether the output is correct or not. We recommend you to click the button corresponding to the result. If it is not correct, it would ask you as to what does the command of yours closely relate. This helps the machine to learn automatically.
+***

@@ -14,7 +14,7 @@ public class nlidb extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Window window = new Window();
-        window.createMainFrame(primaryStage);
+        Window name = new Window();
+        name.createMainFrame(primaryStage);
     }
 }

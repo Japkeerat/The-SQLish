@@ -1,0 +1,2 @@
+This application is designed to help a person without any prior knowledge of SQL and databases to perform SQL operations on SQLite database. With this interface, one can communicate with the database using natural language (English) only without any requirement of knowledge of SQL.
+This application uses machine learning (SKLearn module) and Natural Language Processing (NLTK module) for modifying natural language (English) to the language databases understand (SQL).

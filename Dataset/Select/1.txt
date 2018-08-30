@@ -1,0 +1,1 @@
+Get me the list of people having age more than 20
