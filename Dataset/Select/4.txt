@@ -1,0 +1,1 @@
+Show me the details of people having age less than 24.

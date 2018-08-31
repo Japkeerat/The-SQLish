@@ -1,0 +1,1 @@
+Modify salary of all by decreasing it by 5%.

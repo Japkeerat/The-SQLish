@@ -1,0 +1,1 @@
+Insert a new employee to the database whose name is Thor with age of 1500 years and earning 100000 working as a CEO.

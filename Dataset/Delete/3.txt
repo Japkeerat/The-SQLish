@@ -1,0 +1,1 @@
+Delete records of all those people having age less than 20.
