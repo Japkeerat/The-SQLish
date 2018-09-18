@@ -1,4 +1,4 @@
-# The-Wierdest-Database-App
+# The SQLish
 
 This repository is for the Hakathon I have taken part in.
 
@@ -58,3 +58,4 @@ To run this application on your system, you need to have
 * SQLite jar
 * And multiple Python dependencies, list of which would be added later with whole project.
 
+By the way, SQLish mean SQL+English.
