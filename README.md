@@ -1,5 +1,7 @@
 # The-Wierdest-Database-App
 
+This repository is for the Hakathon I have taken part in.
+
 ## Report submitted to Honeywell for the Hackathon earlier
 
 ### Broad Idea
@@ -28,6 +30,7 @@ With a custom made corpus which is then loaded to make a dataset for machine lea
 * DELETE
 
 (As of now, only these functions work are planned)
+
 Before classifying, NLTK is used to preprocess the data. During preprocessing, numbers, nouns, connecting words, etc. are removed and training is done on the remaining words of the dataset (because these characters are common in all type of inputs and would only degrade model’s accuracy).
 Once we know what category it belongs to, it looks for keywords (nouns, numbers in this case) depending on the requirement of the above 4 cases. Then those keywords are structured as required.
 To prevent training again and again, we are using pickle to store trained machine learning model that can be accessed later on while querying through interface. However, as we have placed buttons of asking user the correctness of the output, depending on the user’s click model may or may not rebuild itself in background on a different thread. The first thread only gets access to pickle which doesn’t change itself until thread 2 completes its work, i.e., it isn’t synchronised.
@@ -36,14 +39,14 @@ To prevent training again and again, we are using pickle to store trained machin
 We are trying to approach this question via many ways. Because of low size of dataset, we have thought of ensembling various models multithreaded but the known issue is that on a quad core processor, two are already busy and ensembling would require three-four cores thus it may cause trouble to user’s computer for a while. Currently, it isn’t very clear what would be the final model.
 
 ### Known issues
-Python and Java integration is becoming a costly affair as we were using temporary files and a lot of extra code was required on both sides. Jython can be used to do so in efficient way but because of average documentation, it is taking a lot of time.
-Machine Learning model (issue discussed above)
-Only works for a specific database, thus hindering robustness of the application.
+* Python and Java integration is becoming a costly affair as we were using temporary files and a lot of extra code was required on both sides. Jython can be used to do so in efficient way but because of average documentation, it is taking a lot of time.
+* Machine Learning model (issue discussed above)
+* Only works for a specific database, thus hindering robustness of the application.
 
 ### What more can be done?
-Moving out from a specific database to any database based on user requirement.
-Not restricting it to just 4 type of SQL commands.
-The dataset presently is also restricted to present database. It can be modified to create a dataset from database itself. (SQL to Natural language in the back to train the model)
+* Moving out from a specific database to any database based on user requirement.
+* Not restricting it to just 4 type of SQL commands.
+* The dataset presently is also restricted to present database. It can be modified to create a dataset from database itself. (SQL to Natural language in the back to train the model)
 
 ## About this repository
 
