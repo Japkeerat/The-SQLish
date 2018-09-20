@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,7 +21,7 @@ class DatabaseView {
     private Connection connection;
     private Statement statement;
     private TableView<Person> table = new TableView<>();
-    ObservableList<Person> data = FXCollections.observableArrayList();
+    private ObservableList<Person> data = FXCollections.observableArrayList();
 
     void createView(Stage primaryStage) {
         primaryStage.setTitle("NL Interface for DBMS");
@@ -47,38 +48,8 @@ class DatabaseView {
         primaryStage.show();
     }
 
-//    void createDB() {
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            connection = DriverManager.getConnection("jdbc:sqlite:AppDB.sqlite");
-//            statement = connection.createStatement();
-//            String sql = "CREATE TABLE APPLICATION(Name VARCHAR(50) NOT NULL," +
-//                    "Age INT NOT NULL, Salary INT NOT NULL, Job VARCHAR(75) NOT NULL)";
-//            statement.executeUpdate(sql);
-//        }
-//        catch(Exception ex) {
-//            System.out.println("Exception raised");
-//            ex.printStackTrace();
-//        }
-//    }
-
     private TableView<Person> getTable() {
         table.setEditable(false);
-
-        TableColumn column1 = new TableColumn("Name");
-        column1.setMinWidth(200);
-        column1.setMaxWidth(200);
-        TableColumn column2 = new TableColumn("Age");
-        column2.setMinWidth(100);
-        column2.setMaxWidth(100);
-        TableColumn column3 = new TableColumn("Salary");
-        column3.setMinWidth(150);
-        column3.setMaxWidth(150);
-        TableColumn column4 = new TableColumn("Job");
-        column4.setMinWidth(200);
-        column4.setMaxWidth(200);
-
-        table.getColumns().addAll(column1, column2, column3, column4);
 
         return table;
     }
@@ -93,26 +64,27 @@ class DatabaseView {
             ResultSet set = statement.executeQuery(sql);
             connection.commit();
             while(set.next()) {
-//                ObservableList<String> row = FXCollections.observableArrayList();
                 String name = set.getString("Name");
                 String age = set.getString("Age");
                 String salary = set.getString("Salary");
                 String job = set.getString("Job");
-//                for(int i=1; i<=set.getMetaData().getColumnCount(); i++) {
-//                    row.add(set.getString(i));
-//                }
-//                row.addAll(name, age, salary, job);
                 //Person person = new Person(name,age,salary,job);
-                data.add(new Person(name,age,salary,job));//person.getName(),person.getAge(),person.getSalary(),person.getJob());
-//                System.out.println(row);
+                data.add(new Person(name, age, salary, job));
             }
-            System.out.println(data);
             table.setItems(data);
         }
         catch(Exception ex) {
             ex.printStackTrace();
         }
-
+        TableColumn NameCol = new TableColumn("Name");
+        NameCol.setCellValueFactory(new PropertyValueFactory("Name"));
+        TableColumn AgeCol = new TableColumn("Name");
+        AgeCol.setCellValueFactory(new PropertyValueFactory("Name"));
+        TableColumn SalaryCol = new TableColumn("Name");
+        SalaryCol.setCellValueFactory(new PropertyValueFactory("Name"));
+        TableColumn JobCol = new TableColumn("Name");
+        JobCol.setCellValueFactory(new PropertyValueFactory("Name"));
+        table.getColumns().addAll(NameCol, AgeCol, SalaryCol, JobCol);
         return table;
     }
 }
