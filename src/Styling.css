@@ -40,3 +40,9 @@
     -fx-font-size: 20px;
     -fx-fill: #9090ff;
 }
+
+#Name {
+    -fx-font-family: FreeSans;
+    -fx-font-size: 20px;
+    -fx-fill: #9090ff;
+}

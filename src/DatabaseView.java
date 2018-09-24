@@ -68,7 +68,6 @@ class DatabaseView {
                 String age = set.getString("Age");
                 String salary = set.getString("Salary");
                 String job = set.getString("Job");
-                //Person person = new Person(name,age,salary,job);
                 data.add(new Person(name, age, salary, job));
             }
             table.setItems(data);

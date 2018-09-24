@@ -30,11 +30,11 @@ class StaticSection {
             window.createMainFrame(primaryStage);
         });
 
-//        MenuItem fileItem2 = new MenuItem("Database");
-//        fileItem2.setOnAction(event -> {
-//            DatabaseView view = new DatabaseView();
-//            view.createView(primaryStage);
-//        });
+        //MenuItem fileItem2 = new MenuItem("Database");
+        //fileItem2.setOnAction(event -> {
+         //   DatabaseView view = new DatabaseView();
+          //  view.createView(primaryStage);
+        //});
 
         MenuItem fileItem3 = new MenuItem("Exit");
         fileItem3.setOnAction(event -> System.exit(0));
@@ -53,8 +53,14 @@ class StaticSection {
             usage.tellUsingWay(primaryStage);
         });
 
-        file.getItems().addAll(fileItem1/*, fileItem2*/, fileItem3);
-        help.getItems().addAll(helpItem1, helpItem2);
+        MenuItem helpItem3 = new MenuItem("Developers");
+        helpItem3.setOnAction(event -> {
+            Developers dev = new Developers();
+            dev.meetDevelopers(primaryStage);
+        });
+
+        file.getItems().addAll(fileItem1, fileItem3);
+        help.getItems().addAll(helpItem1, helpItem2, helpItem3);
         bar.getMenus().addAll(file, help);
 
         return bar;

@@ -46,6 +46,6 @@ def find_features(document):
     return features
 
 
-print((find_features(new_corpus.words('Delete_1.txt'))))
+# print((find_features(new_corpus.words('Delete_1.txt'))))
 #
 # featuresets = [(find_features(rev), category) for (rev, category) in documents]
