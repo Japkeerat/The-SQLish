@@ -66,19 +66,6 @@ class Window {
         Label dbOutput = new Label();
         grid.add(dbOutput,1,4);
 
-        Label label3 = new Label("Is the outut correct?");
-        label3.setVisible(false);
-        label3.setId("Label");
-        grid.add(label3,0,5);
-
-        Button correctButton = new Button("Correct");
-        Button incorrectButton = new Button("Incorrect");
-        HBox correctionBox = buttonBox(correctButton,incorrectButton);
-        correctionBox.setVisible(false);
-        correctButton.setCursor(Cursor.HAND);
-        incorrectButton.setCursor(Cursor.HAND);
-        grid.add(correctionBox,1,5);
-
         enterButton.setOnAction(event -> {
             command = field.getText();
             SQLVersion sql = new SQLVersion();
@@ -88,21 +75,9 @@ class Window {
             label2.setVisible(true);
             Executing execute = new Executing();
             dbOutput.setText(execute.executeCommand(command));
-            label3.setVisible(true);
-            correctionBox.setVisible(true);
         });
 
         clearButton.setOnAction(event -> field.clear());
-
-        CorrectionFactor factor = new CorrectionFactor();
-
-        correctButton.setOnAction(event -> {
-            factor.isCorrect(command, sequel);
-        });
-
-        incorrectButton.setOnAction(event -> {
-            factor.isIncorrect(command);
-        });
 
         Scene scene = new Scene(new VBox(), 1000, 700);
         scene.getStylesheets().add(Window.class.getResource("Styling.css").toExternalForm());

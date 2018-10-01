@@ -2,6 +2,7 @@ import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,13 +18,14 @@ import java.util.logging.SimpleFormatter;
 class Usage {
 
     void tellUsingWay(Stage primaryStage) {
-        primaryStage.setTitle("NL Interface for DBMS");
         primaryStage.setResizable(true);
         primaryStage.setFullScreen(false);
 
         StaticSection section = new StaticSection();
         GridPane grid = section.pane();
         MenuBar menuBar = section.toolbar(primaryStage);
+        primaryStage.setTitle(section.getName());
+        primaryStage.getIcons().add(new Image("file:logo.png"));
 
         Text title = new Text("Usage");
         title.setId("Title");

@@ -1,6 +1,9 @@
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -11,7 +14,8 @@ class Executing {
 
     String executeCommand(String sql) {
         if(sql.trim().charAt(0)=='S') {
-           // querySelect(sql);
+           querySelect(sql);
+           openFile();
         }
         else if(sql.trim().charAt(0)=='D') {
             querying(sql);
@@ -45,44 +49,69 @@ class Executing {
             statement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            logger.info(String.valueOf(ex));
-            logger.setLevel(Level.SEVERE);
-            Error error = new Error();
-            Stage s = new Stage();
-            try {
-                error.errorDisplay(s);
-            } catch (Exception e) {
-                logger.info(String.valueOf(e));
-            }
+            errorDisplay(logger, ex);
         }
     }
 
-//    private void querySelect(String sql) {
-//        try {
-//            Class.forName("org.sqlite.JDBC");
-//            Connection connection = DriverManager.getConnection("jdbc:sqlite:AppDB.sqlite");
-//            connection.setAutoCommit(false);
-//            Statement statement = connection.createStatement();
-//            String sqlArray[] = sql.split(" ");
-//            ResultSet set = statement.executeQuery(sql);
-//            connection.commit();
-//            if(sqlArray[1].equals("*")) {
-//                while(set.next()) {
-//                    String name = set.getString("Name");
-//                    String age = set.getString("Age");
-//                    String salary = set.getString("Salary");
-//                    String job = set.getString("Job");
-//                }
-//            }
-//            else {
-//                while(set.next()) {
-//
-//                }
-//            }
-//            statement.close();
-//            connection.close();
-//        } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void querySelect(String sql) {
+        Logger logger = Logger.getLogger("ErrorLog");
+        FileHandler handler;
+        try {
+            handler = new FileHandler("ErrorLog.log");
+            logger.addHandler(handler);
+            SimpleFormatter formatter = new SimpleFormatter();
+            handler.setFormatter(formatter);
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:AppDB.sqlite");
+            connection.setAutoCommit(false);
+            Statement statement = connection.createStatement();
+            String sqlArray[] = sql.split(" ");
+            ResultSet set = statement.executeQuery(sql);
+            connection.commit();
+            if(sqlArray[1].equals("*")) {
+                while(set.next()) {
+                    String name = set.getString("Name");
+                    String age = set.getString("Age");
+                    String salary = set.getString("Salary");
+                    String job = set.getString("Job");
+                    try(FileWriter fw = new FileWriter("output.csv", true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        PrintWriter pw = new PrintWriter(bw)) {
+                        pw.println(name+","+age+","+salary+","+job);
+                    }
+                }
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception ex) {
+            errorDisplay(logger, ex);
+        }
+    }
+
+    private void errorDisplay(Logger logger, Exception ex) {
+        logger.info(String.valueOf(ex));
+        logger.setLevel(Level.SEVERE);
+        Error error = new Error();
+        Stage s = new Stage();
+        try {
+            error.errorDisplay(s);
+        } catch (Exception e) {
+            logger.info(String.valueOf(e));
+        }
+    }
+
+    private void openFile() {
+        Logger logger = Logger.getLogger("ErrorLog");
+        FileHandler handler;
+        try {
+            handler = new FileHandler("ErrorLog.log");
+            logger.addHandler(handler);
+            SimpleFormatter formatter = new SimpleFormatter();
+            handler.setFormatter(formatter);
+            Runtime.getRuntime().exec("output.csv");
+        }
+        catch(Exception ex) {
+            errorDisplay(logger, ex);
+        }
+    }
 }

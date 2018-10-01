@@ -46,3 +46,9 @@
     -fx-font-size: 20px;
     -fx-fill: #9090ff;
 }
+
+#PreloaderTitle {
+    -fx-font-family: FreeSans;
+    -fx-font-size: 15px;
+    -fx-fill: #9090ff;
+}

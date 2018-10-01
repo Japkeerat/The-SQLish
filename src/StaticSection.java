@@ -15,6 +15,12 @@ import javafx.stage.Stage;
  * */
 class StaticSection {
 
+    private String appName = "The SQLish";
+
+    String getName() {
+        return appName;
+    }
+
     /**
      * @param primaryStage Stage to go to when a button on MenuBar is pressed.
      * @return MenuBar the bar which is then added to the scene on the stage.
@@ -30,11 +36,11 @@ class StaticSection {
             window.createMainFrame(primaryStage);
         });
 
-        //MenuItem fileItem2 = new MenuItem("Database");
-        //fileItem2.setOnAction(event -> {
-         //   DatabaseView view = new DatabaseView();
-          //  view.createView(primaryStage);
-        //});
+//        MenuItem fileItem2 = new MenuItem("Database");
+//        fileItem2.setOnAction(event -> {
+//            DatabaseView view = new DatabaseView();
+//            view.createView(primaryStage);
+//        });
 
         MenuItem fileItem3 = new MenuItem("Exit");
         fileItem3.setOnAction(event -> System.exit(0));
@@ -74,4 +80,5 @@ class StaticSection {
         grid.setPadding(new Insets(25,25,25,25));
         return grid;
     }
+
 }

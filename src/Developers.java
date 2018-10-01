@@ -23,13 +23,14 @@ import java.util.logging.SimpleFormatter;
 class Developers {
 
     void meetDevelopers(Stage primaryStage) {
-        primaryStage.setTitle("NL Interface for DBMS");
         primaryStage.setResizable(true);
         primaryStage.setFullScreen(false);
 
         StaticSection section = new StaticSection();
         GridPane grid = section.pane();
         MenuBar menuBar = section.toolbar(primaryStage);
+        primaryStage.setTitle(section.getName());
+        primaryStage.getIcons().add(new Image("file:logo.png"));
 
         Text title = new Text("Meet the Developers");
         title.setId("Title");
